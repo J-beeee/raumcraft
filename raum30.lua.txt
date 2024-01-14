@@ -1,0 +1,40 @@
+-- 30x30x30 Raum graben
+
+-- Funktion zum Graben
+function grab()
+  for i = 1, 30 do
+    turtle.dig()
+    turtle.forward()
+  end
+end
+
+-- Funktion zum nach oben gehen und Graben
+function digLayer()
+  for i = 1, 30 do
+    grab()
+    if i < 30 then
+      turtle.turnRight()
+      turtle.dig()
+      turtle.forward()
+      turtle.turnRight()
+      grab()
+      turtle.turnLeft()
+      turtle.dig()
+      turtle.forward()
+      turtle.turnLeft()
+    end
+  end
+end
+
+-- Hauptfunktion zum Graben des gesamten Raums
+function digRoom()
+  for i = 1, 30 do
+    digLayer()
+    if i < 30 then
+      turtle.up()
+    end
+  end
+end
+
+-- Starte das Graben
+digRoom()
